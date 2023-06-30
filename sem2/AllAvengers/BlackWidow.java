@@ -1,4 +1,7 @@
 package AllAvengers;
 
-public class BlackWidow {
+public class BlackWidow extends Avengers {
+    public BlackWidow(String name) {
+        super(45, name, "female");
+    }
 }

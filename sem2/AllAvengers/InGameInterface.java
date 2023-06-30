@@ -1,3 +1,5 @@
+package AllAvengers;
+
 public interface InGameInterface {
 
     void step();
