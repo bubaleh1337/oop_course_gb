@@ -19,8 +19,19 @@ import java.util.Random;
 4.Нанести ему среднее повреждение
 5.Если среди своих есть крестьянин вернуть управление
 6.уменьшить кол-во стрел на одну и вернуть управление
+
+Вызывать персонажей из обеих комманд в порядке инициативы.
+ */
+
+/*
+Делаем крестьян! В степе проверяем жив ли он и
+если жив сбрасываем флаг занятости или поле state
  */
 public class Main {
+    public static ArrayList team1 = new ArrayList<>();
+    public static ArrayList team2 = new ArrayList<>();
+
+    public static ArrayList allTeam = new ArrayList<>();
     public static void main(String[] args) {
         ArrayList<Avengers> list = new ArrayList<>();
         list.add(new AntMan(Names.AntMan.getName(), 0, 1));
@@ -36,7 +47,6 @@ public class Main {
         System.out.println("Your Team1:");
         int teamCount = 5;
         Random rand = new Random();
-        ArrayList<Avengers> team1 = new ArrayList<>();
         for (int i = 0; i < teamCount; i++) {
             int val = rand.nextInt(teamCount);
             switch (val) {
@@ -55,7 +65,6 @@ public class Main {
                     team1.add(new Human(Names.Human.getName(), 0, val + 1));
             }
         }
-        ArrayList<Avengers> team2 = new ArrayList<>();
         for (int i = 0; i < teamCount; i++) {
             int val = rand.nextInt(5);
             switch (val) {
@@ -76,6 +85,7 @@ public class Main {
             // System.out.println(team2.get(i).getInfo());
         }
         // System.out.println("The nearest: ");
+        View view;
 
         System.out.println("Team1: ");
         team1.forEach(n-> System.out.println(n.getInfo()));

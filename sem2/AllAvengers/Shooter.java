@@ -21,6 +21,7 @@ public abstract class Shooter extends Avengers {
         for (Avengers unit:team) {
             if (unit.name.equals("Human")) {
                 arrows++;
+                unit.state = "busy";
                 break;
             }
         }
