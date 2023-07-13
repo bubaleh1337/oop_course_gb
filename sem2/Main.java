@@ -27,22 +27,20 @@ import java.util.Random;
 Делаем крестьян! В степе проверяем жив ли он и
 если жив сбрасываем флаг занятости или поле state
  */
-public class Main {
-    public static ArrayList team1 = new ArrayList<>();
-    public static ArrayList team2 = new ArrayList<>();
 
-    public static ArrayList allTeam = new ArrayList<>();
+/*
+Реализовать визуализацию своего проекта по примеру семинара
+с использованием приложенных классов. Доработать степ крестьян и магов!
+ */
+public class Main {
+    public static ArrayList<Avengers> team1 = new ArrayList<>();
+    public static ArrayList<Avengers> team2 = new ArrayList<>();
+    public static ArrayList<Avengers> allTeam = new ArrayList<>();
     public static void main(String[] args) {
-        ArrayList<Avengers> list = new ArrayList<>();
-        list.add(new AntMan(Names.AntMan.getName(), 0, 1));
-        list.add(new BlackWidow(Names.BlackWidow.getName(),0, 2));
-        list.add(new CaptainAmerica(Names.CaptainAmerica.getName(), 0, 3));
-        list.add(new Hulk(Names.Hulk.getName(), 0, 4));
-        list.add(new IronMan(Names.IronMan.getName(), 0, 5));
-        list.add(new SpiderMan(Names.SpiderMan.getName(), 0, 6));
-        list.add(new Thor(Names.Thor.getName(), 0, 7));
-        list.add(new Wasp(Names.Wasp.getName(), 0, 8));
-        // list.forEach(n-> System.out.println(n.getInfo()));
+
+//        allTeam.addAll(team1);
+//        allTeam.addAll(team2);
+//        allTeam.sort(Avengers::compareTo);
 
         System.out.println("Your Team1:");
         int teamCount = 5;
@@ -82,9 +80,8 @@ public class Main {
                 case 4:
                     team2.add(new Human(Names.Human.getName(), 0, val + 1));
             }
-            // System.out.println(team2.get(i).getInfo());
         }
-        // System.out.println("The nearest: ");
+
         View view;
 
         System.out.println("Team1: ");

@@ -1,5 +1,6 @@
 package AllAvengers;
 
+import javax.lang.model.element.AnnotationValueVisitor;
 import java.util.ArrayList;
 
 public abstract class Avengers implements InGameInterface {
@@ -17,7 +18,7 @@ public abstract class Avengers implements InGameInterface {
         coordinates = new Coordinates(x, y);
     }
 
-    public ArrayList getCoords() {
+    public ArrayList<Integer> getCoords() {
         return coordinates.xy;
     }
 
@@ -45,5 +46,10 @@ public abstract class Avengers implements InGameInterface {
             hp = 0;
         }
         if (hp > max_hp) hp = max_hp;
+    }
+
+    public double[] getCoords() {
+        ArrayList<Double> doub = new ArrayList<>();
+
     }
 }
