@@ -25,7 +25,7 @@ public class View {
     private static String getChar(int x, int y){
         String out = "| ";
         for (Avengers human: Main.allTeam) {
-            if (human.getCoords()[0] == x && human.getCoords()[1] == y){
+            if (human.getCoords().get(0) == x && human.getCoords().get(1) == y){
                 if (human.getHp() == 0) {
                     out = "|" + (AnsiColors.ANSI_RED + human.toString().charAt(0) + AnsiColors.ANSI_RESET);
                     break;

@@ -9,8 +9,9 @@ public class Coordinates {
     public Coordinates(int x, int y) {
         this.x = x;
         this.y = y;
-        xy.add(x);
-        xy.add(y);
+        xy.add(0, x);
+        xy.add(1, y);
+        //return xy;
     }
 
     public double countDistance(Coordinates coordinates) {

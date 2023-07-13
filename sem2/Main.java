@@ -1,7 +1,9 @@
 import AllAvengers.*;
 
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 /*
 Добавить файл с описанием интерфейса. В котором описать два метода, void step(); и String getInfo();
@@ -38,52 +40,74 @@ public class Main {
     public static ArrayList<Avengers> allTeam = new ArrayList<>();
     public static void main(String[] args) {
 
-//        allTeam.addAll(team1);
-//        allTeam.addAll(team2);
-//        allTeam.sort(Avengers::compareTo);
-
         System.out.println("Your Team1:");
+
         int teamCount = 5;
         Random rand = new Random();
-        for (int i = 0; i < teamCount; i++) {
-            int val = rand.nextInt(teamCount);
+
+        for (int i = 1; i < teamCount + 1; i++) {
+            int val = rand.nextInt(6);
             switch (val) {
                 case 0:
-                    team1.add(new AntMan(Names.AntMan.getName(), 0, val + 1));
+                    team1.add(new AntMan(Names.AntMan.getName(), 0, i));
                     break;
                 case 1:
-                    team1.add(new BlackWidow(Names.BlackWidow.getName(), 0, val + 1));
+                    team1.add(new BlackWidow(Names.BlackWidow.getName(), 0, i));
                     break;
                 case 2:
-                    team1.add(new CaptainAmerica(Names.CaptainAmerica.getName(), 0, val + 1));
+                    team1.add(new CaptainAmerica(Names.CaptainAmerica.getName(), 0, i));
                     break;
                 case 3:
-                    team1.add(new Hulk(Names.Hulk.getName(), 0, val + 1));
+                    team1.add(new Hulk(Names.Hulk.getName(), 0, i));
                 case 4:
-                    team1.add(new Human(Names.Human.getName(), 0, val + 1));
+                    team1.add(new Human(Names.Human.getName(), 0, i));
             }
         }
-        for (int i = 0; i < teamCount; i++) {
-            int val = rand.nextInt(5);
+        for (int i = 1; i < teamCount + 1; i++) {
+            int val = rand.nextInt(6);
             switch (val) {
-                case 0:
-                    team2.add(new IronMan(Names.IronMan.getName(), 5, val+1));
-                    break;
                 case 1:
-                    team2.add(new SpiderMan(Names.SpiderMan.getName(), 5, val+1));
+                    team2.add(new IronMan(Names.IronMan.getName(), 5, i));
                     break;
                 case 2:
-                    team2.add(new Thor(Names.Thor.getName(), 5, val+1));
+                    team2.add(new SpiderMan(Names.SpiderMan.getName(), 5, i));
                     break;
                 case 3:
-                    team2.add(new Wasp(Names.Wasp.getName(), 5, val+1));
+                    team2.add(new Thor(Names.Thor.getName(), 5, i));
+                    break;
                 case 4:
-                    team2.add(new Human(Names.Human.getName(), 0, val + 1));
+                    team2.add(new Wasp(Names.Wasp.getName(), 5, i));
+                    break;
+                case 5:
+                    team2.add(new Human(Names.Human.getName(), 0, i));
+                    break;
             }
         }
 
-        View view;
+        allTeam.addAll(team1);
+        allTeam.addAll(team2);
+        //allTeam.sort(Avengers::compareTo);
 
+        Scanner in = new Scanner(System.in);
+        while(true) {
+            View.view();
+            in.nextLine();
+            for (Avengers avengers : allTeam) {
+                if (team2.contains(avengers)) avengers.step(team1, team2);
+                else avengers.step(team2, team1);
+            }
+            if (isTeamDie(team1)) {
+                System.out.println("Team 2 (Blue) win");
+                break;
+            }
+            if (isTeamDie(team2)) {
+                System.out.println(("Team 1 (Green) win"));
+                break;
+            }
+        }
+
+
+        /*
         System.out.println("Team1: ");
         team1.forEach(n-> System.out.println(n.getInfo()));
 
@@ -98,5 +122,12 @@ public class Main {
 
         System.out.println("Team2 урон: ");
         team2.forEach(n-> System.out.println(n.getInfo()));
+         */
+    }
+    static boolean isTeamDie(ArrayList<Avengers> team) {
+        for (Avengers avengers: team) {
+            if (!avengers.equals("dead")) return false;
+        }
+        return true;
     }
 }

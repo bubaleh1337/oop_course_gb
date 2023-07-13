@@ -18,6 +18,10 @@ public abstract class Avengers implements InGameInterface {
         coordinates = new Coordinates(x, y);
     }
 
+    public static CharSequence nCopies(int i, String s) {
+        return null;
+    }
+
     public ArrayList<Integer> getCoords() {
         return coordinates.xy;
     }
@@ -25,6 +29,9 @@ public abstract class Avengers implements InGameInterface {
     @Override
     public String getInfo() {
         return String.format("name:%s hp:%d", name, hp);
+    }
+    public int getHp() {
+        return this.hp;
     }
 
     public Avengers nearest(ArrayList<Avengers> units) {
@@ -48,8 +55,4 @@ public abstract class Avengers implements InGameInterface {
         if (hp > max_hp) hp = max_hp;
     }
 
-    public double[] getCoords() {
-        ArrayList<Double> doub = new ArrayList<>();
-
-    }
 }
