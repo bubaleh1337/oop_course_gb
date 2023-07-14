@@ -42,44 +42,44 @@ public class Main {
 
         System.out.println("Your Team1:");
 
-        int teamCount = 5;
+        int teamCount = 10;
         Random rand = new Random();
 
         for (int i = 1; i < teamCount + 1; i++) {
-            int val = rand.nextInt(6);
+            int val = rand.nextInt(5) + 1;
             switch (val) {
-                case 0:
-                    team1.add(new AntMan(Names.AntMan.getName(), 0, i));
-                    break;
                 case 1:
-                    team1.add(new BlackWidow(Names.BlackWidow.getName(), 0, i));
+                    team1.add(new AntMan(Names.AntMan.getName(), 1, i));
                     break;
                 case 2:
-                    team1.add(new CaptainAmerica(Names.CaptainAmerica.getName(), 0, i));
+                    team1.add(new BlackWidow(Names.BlackWidow.getName(), 1, i));
                     break;
                 case 3:
-                    team1.add(new Hulk(Names.Hulk.getName(), 0, i));
+                    team1.add(new CaptainAmerica(Names.CaptainAmerica.getName(), 1, i));
+                    break;
                 case 4:
-                    team1.add(new Human(Names.Human.getName(), 0, i));
+                    team1.add(new Hulk(Names.Hulk.getName(), 1, i));
+                case 5:
+                    team1.add(new Human(Names.Human.getName(), 1, i));
             }
         }
         for (int i = 1; i < teamCount + 1; i++) {
-            int val = rand.nextInt(6);
+            int val = rand.nextInt(5) + 1;
             switch (val) {
                 case 1:
-                    team2.add(new IronMan(Names.IronMan.getName(), 5, i));
+                    team2.add(new IronMan(Names.IronMan.getName(), 10, i));
                     break;
                 case 2:
-                    team2.add(new SpiderMan(Names.SpiderMan.getName(), 5, i));
+                    team2.add(new SpiderMan(Names.SpiderMan.getName(), 10, i));
                     break;
                 case 3:
-                    team2.add(new Thor(Names.Thor.getName(), 5, i));
+                    team2.add(new Thor(Names.Thor.getName(), 10, i));
                     break;
                 case 4:
-                    team2.add(new Wasp(Names.Wasp.getName(), 5, i));
+                    team2.add(new Wasp(Names.Wasp.getName(), 10, i));
                     break;
                 case 5:
-                    team2.add(new Human(Names.Human.getName(), 0, i));
+                    team2.add(new Human(Names.Human.getName(), 10, i));
                     break;
             }
         }

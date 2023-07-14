@@ -18,10 +18,6 @@ public abstract class Avengers implements InGameInterface {
         coordinates = new Coordinates(x, y);
     }
 
-    public static CharSequence nCopies(int i, String s) {
-        return null;
-    }
-
     public ArrayList<Integer> getCoords() {
         return coordinates.xy;
     }
