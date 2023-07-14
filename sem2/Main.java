@@ -34,6 +34,15 @@ import java.util.Scanner;
 Реализовать визуализацию своего проекта по примеру семинара
 с использованием приложенных классов. Доработать степ крестьян и магов!
  */
+
+/*
+Делаем ход пехоты!
+1. Проверяем здоровье
+2. Ищем ближайшего врага
+3. Двигаемся в сторну врага
+4. Не наступаем на живых персонажей
+5. Если расстояние до врага одна клетка бём его!
+ */
 public class Main {
     public static ArrayList<Avengers> team1 = new ArrayList<>();
     public static ArrayList<Avengers> team2 = new ArrayList<>();
@@ -105,24 +114,6 @@ public class Main {
                 break;
             }
         }
-
-
-        /*
-        System.out.println("Team1: ");
-        team1.forEach(n-> System.out.println(n.getInfo()));
-
-        System.out.println("Team2: ");
-        team2.forEach(n-> System.out.println(n.getInfo()));
-
-        team1.forEach(n-> n.step(team2, team1));
-        team2.forEach(n-> n.step(team1, team2));
-
-        System.out.println("Team1 урон: ");
-        team1.forEach(n-> System.out.println(n.getInfo()));
-
-        System.out.println("Team2 урон: ");
-        team2.forEach(n-> System.out.println(n.getInfo()));
-         */
     }
     static boolean isTeamDie(ArrayList<Avengers> team) {
         for (Avengers avengers: team) {
