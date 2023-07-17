@@ -2,15 +2,24 @@ package AllAvengers;
 
 import java.util.ArrayList;
 
-public class Human extends Avengers {
+// Peasant
+public class Human extends Support {
 
-    public Human(String name, int x, int y) {
-        super(0, 100, name, "g", x, y);
+    public Human(int x, int y, int initiative, int actionPriority) {
+        super(x, y, initiative, 0, 0, 1, actionPriority);
     }
 
+    @Override
+    public String getInfo() {
+        return "Peasant [" + coordinates.x + ", " + coordinates.y + "] HP: " + hp + "/" + max_hp + " " + state;
+    }
 
     @Override
-    public void step(ArrayList<Avengers> units, ArrayList<Avengers> team) {
-        if (this.hp > 0) state = "stand";
+    public void step(ArrayList<Avengers> enemy, ArrayList<Avengers> team) {
+        if (isAlive) {
+            if (state == "Busy") {
+                state = "Stand";
+            }
+        }
     }
 }

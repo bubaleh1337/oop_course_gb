@@ -2,15 +2,14 @@ package AllAvengers;
 
 import java.util.ArrayList;
 
-public class AntMan extends Avengers {
+// SNIPER
+public class AntMan extends Shooter {
 
-    public AntMan(String name, int x, int y) {
-
-        super(30,100, name, "male", x, y);
+    public AntMan(int x, int y, int initiative) {
+        super(x, y, initiative + 3, 7, 100, 1);
     }
-
     @Override
-    public void step(ArrayList<Avengers> units, ArrayList<Avengers> team) {
-        Avengers tmp = nearest(units);
+    public String getInfo() {
+        return "Sniper [" + coordinates.x + ", " + coordinates.y + "] HP: " + hp + "/" + max_hp + " " + state;
     }
 }

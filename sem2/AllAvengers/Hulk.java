@@ -1,15 +1,14 @@
 package AllAvengers;
 
 import java.util.ArrayList;
-
-public class Hulk extends  Avengers{
-    public Hulk(String name, int x, int y) {
-        super(70, 100, name, "male", x, y);
+// ROGUE
+public class Hulk extends Melee{
+    public Hulk(int x, int y, int initiative) {
+        super (x, y, initiative + 4, 5, 2, 2, 1);
     }
 
-
     @Override
-    public void step(ArrayList<Avengers> units, ArrayList<Avengers> team) {
-        Avengers tmp = nearest(units);
+    public String getInfo() {
+        return "Rogue [" + coordinates.x + ", " + coordinates.y + "] HP: " + hp + "/" + max_hp + " " + state;
     }
 }

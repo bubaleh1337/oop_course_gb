@@ -1,10 +1,13 @@
 package AllAvengers;
 
-import java.util.ArrayList;
-
+// ARCHER
 public class SpiderMan extends Shooter{
-    public SpiderMan(String name, int x, int y) {
-        super(55, 100, name, "male", x, y);
+    public SpiderMan(int x, int y, int initiative) {
+        super(x, y, initiative + 3, 5, 20, 0);
     }
 
+    @Override
+    public String getInfo() {
+        return "Archer [" + coordinates.x + ", " + coordinates.y + "] arrows: " + arrows + " HP: " + hp + "/" + max_hp + " " + state;
+    }
 }

@@ -2,14 +2,12 @@ package AllAvengers;
 
 import java.util.ArrayList;
 
-public class IronMan extends Avengers {
-    public IronMan(String name, int x, int y) {
-        super(65, 100, name, "male", x, y);
+public class IronMan extends Shooter {
+    public IronMan(int x, int y, int initiative) {
+        super(x, y, initiative + 3, 8, 15, 0);
     }
-
-
     @Override
-    public void step(ArrayList<Avengers> units, ArrayList<Avengers> team) {
-        Avengers tmp = nearest(units);
+    public String getInfo() {
+        return "IronMan [" + coordinates.x + ", " + coordinates.y + "] arrows: " + arrows + " HP: " + hp + "/" + max_hp + " " + state;
     }
 }

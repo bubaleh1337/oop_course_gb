@@ -2,15 +2,13 @@ package AllAvengers;
 
 import java.util.ArrayList;
 
-public class BlackWidow extends Avengers {
-    public BlackWidow(String name, int x, int y) {
+public class BlackWidow extends Shooter {
+    public BlackWidow(int x, int y, int initiative) {
 
-        super(45, 100, name, "female", x, y);
+        super(x, y, initiative + 3, 6, 100, 1);
     }
-
-
     @Override
-    public void step(ArrayList<Avengers> units, ArrayList<Avengers> team) {
-        Avengers tmp = nearest(units);
+    public String getInfo() {
+        return "Widow [" + coordinates.x + ", " + coordinates.y + "] HP: " + hp + "/" + max_hp + " " + state;
     }
 }

@@ -3,36 +3,45 @@ package AllAvengers;
 import java.util.ArrayList;
 
 public abstract class Shooter extends Avengers {
-    protected int arrows = 50;
+    protected int arrows, attackRange, timeToLoad;
 
-    public Shooter(int damage, int hp, String name, String sex, int x, int y) {
-        super(damage, hp, name, sex, x, y);
+    public Shooter(int x, int y, int initiative, int attackRange, int arrows, int timeToLoad) {
+        super(x, y, 50, 50, 5, 1, initiative, true);
+        this.attackRange = attackRange;
+        this.arrows = arrows;
+        this.timeToLoad = timeToLoad;
     }
 
     @Override
-    public void step(ArrayList<Avengers> units, ArrayList<Avengers> team) {
-        // Если жизни 0 вернуть управление
-        if (this.hp == 0 || this.arrows == 0) return;
-        // Если стрел 0 вернуть управление
-        // Найти ближайшего противника
-        Avengers tmp = nearest(units);
-        // Нанести ему среднее повреждение
+    public void step(ArrayList<Avengers> enemy, ArrayList<Avengers> team) {
+        Avengers tmp = nearest(enemy);
 
-        for (Avengers unit:team) {
-            if (unit.name.equals("Human")) {
-                arrows++;
-                unit.state = "busy";
-                break;
+        if (isAlive) {
+            for (Avengers unit: team) {
+                if (unit instanceof Human && unit.state == "Stand" && arrows < 20 && this instanceof SpiderMan) {
+                    arrows += 1;
+                    unit.state = "Busy";
+                    return;
+                }
+            }
+
+            if ((int) coordinates.countDistance(tmp.coordinates) <= attackRange) {
+                if (arrows > 0 && attackRange != 1) {
+                    if (attackRange == 1) tmp.getDamage(1);
+                    else tmp.getDamage(damage);
+                    arrows -= 1;
+                    state = "Attack";
+                    return;
+                } else {
+                    attackRange = 1;
+                    state = "->Melee";
+                }
+            } else {
+                move(tmp.coordinates, team);
+                state = "Moving";
+                return;
             }
         }
-        tmp.HP_damage(this.damage);
-        // уменьшить кол-во стрел на одну и вернуть управление
-        arrows -= 1;
         return;
-    }
-
-    @Override
-    public String getInfo() {
-        return String.format("name:%s hp:%d arrows:%d", name, hp, arrows);
     }
 }

@@ -2,13 +2,14 @@ package AllAvengers;
 
 import java.util.ArrayList;
 
-public class CaptainAmerica extends Avengers{
-    public CaptainAmerica(String name, int x, int y) {
-        super(65, 100, name, "male", x, y); }
-
+// LANCER
+public class CaptainAmerica extends Melee{
+    public CaptainAmerica(int x, int y, int initiative) {
+        super(x, y, initiative + 4, 10, 1, 1, 2);
+    }
 
     @Override
-    public void step(ArrayList<Avengers> units, ArrayList<Avengers> team) {
-        Avengers tmp = nearest(units);
+    public String getInfo() {
+        return "Lancer [" + coordinates.x + ", " + coordinates.y + "] HP: " + hp + "/" + max_hp + " " + state;
     }
 }

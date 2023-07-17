@@ -4,49 +4,51 @@ import javax.lang.model.element.AnnotationValueVisitor;
 import java.util.ArrayList;
 
 public abstract class Avengers implements InGameInterface {
-    protected int damage, hp, max_hp;
-    protected String name, sex, state;
+    public int damage, hp, max_hp, initiative, moveDistance;;
+    public boolean isAlive;
+    public String state;
     Coordinates coordinates;
 
-    public Avengers(int damage, int hp, String name, String sex, int x, int y) {
+    public Avengers(int x, int y, int hp, int max_hp, int damage, int moveDistance, int initiative, boolean isAlive) {
         this.damage = damage;
         this.hp = hp;
-        this.max_hp = hp;
-        this.name = name;
-        this.sex = sex;
-        this.state = "stand";
+        this.max_hp = max_hp;
+        this.state = "Stand";
         coordinates = new Coordinates(x, y);
+        this.initiative = initiative;
+        this.isAlive = isAlive;
+        this.moveDistance = moveDistance;
     }
 
     public ArrayList<Integer> getCoords() {
         return coordinates.xy;
     }
 
-    @Override
-    public String getInfo() {
-        return String.format("name:%s hp:%d", name, hp);
+    public void move(Coordinates targetPosition, ArrayList<Avengers> team) {
+        if (!coordinates.containsByPos(coordinates.newPosition(targetPosition, team), team)) {
+            for (int i = 0; i < moveDistance; i++) {
+                coordinates = coordinates.newPosition(targetPosition, team);
+            }
+        }
     }
-    public int getHp() {
-        return this.hp;
-    }
-
     public Avengers nearest(ArrayList<Avengers> units) {
-        double nearestDistance = Double.MAX_VALUE;
+        double minDistance = Double.MAX_VALUE;
         Avengers nearestEnemy = null;
         for (int i = 0; i < units.size(); i++) {
-            if (coordinates.countDistance(units.get(i).coordinates) < nearestDistance) {
+            if (coordinates.countDistance(units.get(i).coordinates) < minDistance && units.get(i).isAlive) {
                 nearestEnemy = units.get(i);
-                nearestDistance = coordinates.countDistance(units.get(i).coordinates);
+                minDistance = coordinates.countDistance(units.get(i).coordinates);
             }
         }
         return nearestEnemy;
     }
 
-    public void HP_damage(int damage) {
+    public void getDamage(int damage) {
         hp -= damage;
-        if (hp < 1) {
-            state = "dead";
+        if (hp <= 0) {
             hp = 0;
+            isAlive = false;
+            state = "Dead";
         }
         if (hp > max_hp) hp = max_hp;
     }

@@ -4,6 +4,6 @@ import java.util.ArrayList;
 
 public interface InGameInterface {
 
-    void step(ArrayList<Avengers> units, ArrayList<Avengers> team);
+    void step(ArrayList<Avengers> team1, ArrayList<Avengers> team2);
     String getInfo();
 }
