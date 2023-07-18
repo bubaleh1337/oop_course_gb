@@ -88,13 +88,21 @@ public class Main {
         Scanner in = new Scanner(System.in);
         while (true) {
             in.nextLine();
-            String message = null;
+            String message = " ";
 
             int init1 = 0, init2 = 0;
             Avengers tmpTeam1 = team1.get(init1);
             Avengers tmpTeam2 = team2.get(init2);
 
             for (int i = 0; i < teamCount * 2; i++) {
+                if (isTeamDie(team1)) {
+                    message = "Team 2 win!";
+                    break;
+                }
+                if (isTeamDie(team2)) {
+                    message = "Team 1 win!";
+                    break;
+                }
                 if ((tmpTeam1.initiative >= tmpTeam2.initiative && init1 < 10) || (tmpTeam1.initiative < tmpTeam2.initiative && init2 == 10)) {
                     tmpTeam1.step(team2, team1);
                     init1++;
@@ -104,20 +112,11 @@ public class Main {
                     init2++;
                     if (init2 < 10) tmpTeam2 = team2.get(init2);
                 }
-
-                if (isTeamDie(team1)) {
-                    message = "Team 2 win!";
-                    break;
-                }
-                if (isTeamDie(team2)) {
-                    message = "Team 1 win!";
-                    break;
-                }
             }
 
             View.view();
 
-            if (message == "Team 2 win!" || message == "Team 1 win") {
+            if (message.equals("Team 2 win!") || message.equals("Team 1 win")) {
                 System.out.println(message);
                 break;
             }
@@ -126,7 +125,7 @@ public class Main {
 
     public static boolean isTeamDie(ArrayList<Avengers> team) {
         for (Avengers avengers : team) {
-            if (avengers.state != "Dead") return false;
+            if (!avengers.state.equals("Dead")) return false;
         }
         return true;
     }

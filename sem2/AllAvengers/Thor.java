@@ -16,12 +16,11 @@ public class Thor extends Support{
 
     @Override
     public void step(ArrayList<Avengers> enemy, ArrayList<Avengers> team) {
+
         super.step(enemy, team);
         ArrayList<Avengers> deadTeammates = new ArrayList<>();
         Avengers tmpAlly = team.get(0);
-
         if (!isAlive) return;
-
         for (Avengers unit: team) {
             if (!unit.isAlive) {
                 deadTeammates.add(unit);
@@ -32,7 +31,7 @@ public class Thor extends Support{
 
             deadTeammates.get(rand).isAlive = true;
             deadTeammates.get(rand).hp = deadTeammates.get(rand).max_hp / 2;
-            tmpAlly.state = "Revived";
+            //tmpAlly.state = "Revived";
             state = "Revive";
             mana = 0;
             return;

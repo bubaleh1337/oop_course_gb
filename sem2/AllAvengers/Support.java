@@ -15,10 +15,10 @@ public abstract class Support extends Avengers {
     @Override
     public void step(ArrayList<Avengers> enemy, ArrayList<Avengers> team) {
         Avengers tmp = nearest(enemy);
-
+        if (!isAlive) return;
         if ((int) coordinates.countDistance(tmp.coordinates) <= attackRange) {
             if (mana > 0) {
-                tmp.getDamage((damage));
+                tmp.getDamage(damage);
                 mana -= 1;
                 state = "Attack";
             } else {

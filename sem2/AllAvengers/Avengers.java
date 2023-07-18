@@ -24,6 +24,11 @@ public abstract class Avengers implements InGameInterface {
         return coordinates.xy;
     }
 
+    @Override
+    public String toString() {
+        return this.getInfo().split(" ")[0];
+    }
+
     public void move(Coordinates targetPosition, ArrayList<Avengers> team) {
         if (!coordinates.containsByPos(coordinates.newPosition(targetPosition, team), team)) {
             for (int i = 0; i < moveDistance; i++) {
@@ -33,7 +38,7 @@ public abstract class Avengers implements InGameInterface {
     }
     public Avengers nearest(ArrayList<Avengers> units) {
         double minDistance = Double.MAX_VALUE;
-        Avengers nearestEnemy = null;
+        Avengers nearestEnemy = units.get(0);
         for (int i = 0; i < units.size(); i++) {
             if (coordinates.countDistance(units.get(i).coordinates) < minDistance && units.get(i).isAlive) {
                 nearestEnemy = units.get(i);
